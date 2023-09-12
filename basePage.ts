@@ -44,6 +44,10 @@ export class BasePage {
     async getAttribute(elementBy: By, attribute: string): Promise<string> {
         return(await this.getElement(elementBy)).getAttribute(attribute); 
     }; 
+    async sendKeys(elementBy: By, keys: any) {
+        await this.driver.wait(until.elementLocated(elementBy)).clear();
+        return this.driver.findElement(elementBy).sendKeys(keys);
+    }
     actionWiggle(actions: Actions, originElement: WebElement, moveDurationMS:number=100): Actions {
         return actions.move({origin: originElement, duration: moveDurationMS})
         .move({origin: originElement, x: 10, y: 0, duration: moveDurationMS})
