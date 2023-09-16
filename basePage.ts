@@ -84,4 +84,8 @@ export class BasePage {
       .move({ origin: originElement, x: 0, y: 10, duration: moveDurationMS })
       .pause(moveDurationMS);
   }
+  async sendKeys(elementBy: By, keys: any) {
+    await this.driver.wait(until.elementLocated(elementBy)).clear();
+    return this.driver.findElement(elementBy).sendKeys(keys);
+  }
 }
